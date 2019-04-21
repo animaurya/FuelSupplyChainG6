@@ -1,0 +1,253 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger Supply chain netwrok.",
+        "version": "1.0.0",
+        "title": "Swagger Supply chain network",
+        
+        "contact": {
+            "email": ""
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/fuel",
+    
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/addFuel": {
+            "post": {
+                
+                "summary": "add Fuel",
+                "description": "add fuel",
+                "operationId": "addFuel",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "FC object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AF"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/move": {
+            "post": {
+                
+                "summary": "move fuel",
+                "description": "move fuel",
+                "operationId": "move",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "MF object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MF"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/transfer": {
+            "post": {
+                
+                "summary": "transport fuel",
+                "description": "transport fuel",
+                "operationId": "transfer",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "FC  ID object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/MF"
+                        }
+                    }
+                ],
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/update": {
+            "post": {
+                
+                "summary": "update inventory",
+                "description": "update inventory",
+                "operationId": "update",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "AF object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AF"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "object",
+                            "items": {
+                                "$ref": "#/definitions/FC"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/viewStatus": {
+            "post": {
+                
+                "summary": "view status",
+                "description": "view status",
+                "operationId": "viewStatus",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "FC object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/VS"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/AF"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "AF": {
+            "type": "object",
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "description": "owner"
+                },
+                "volume": {
+                    "type": "string",
+                    "description": "volume"
+                },
+                "temperature": {
+                    "type": "string",
+                    "description": "temperature"
+                },
+                "density": {
+                    "type": "string",
+                    "description": "density"
+                 }
+                }
+            },
+       "MF": {
+            "type": "object",
+            "properties": {
+                "depot": {
+                    "type": "string",
+                    "description": "depot"
+                },
+                "volume": {
+                    "type": "string",
+                    "description": "volume"
+                },
+                "distributor": {
+                    "type": "string",
+                    "description": "distributor	"
+                 }
+                }
+            },
+        "SF": {
+            "type": "object",
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "description": "owner"
+                },
+                "volume": {
+                    "type": "string",
+                    "description": "volume"
+                           }
+                }
+            } ,
+          "VS": {
+            "type": "object",
+            "properties": {
+                "owner": {
+                    "type": "string",
+                    "description": "owner"
+                      }
+                }
+            }
+
+        },
+     "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
